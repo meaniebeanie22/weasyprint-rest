@@ -1,4 +1,4 @@
-FROM python:slim-buster AS builder
+FROM python:slim-bullseye AS builder
 RUN apt-get update && \
     apt-get install --no-install-suggests --no-install-recommends --yes python3-venv gcc libpython3-dev gtk+3.0 && \
     python3 -m venv /venv && \
