@@ -23,7 +23,6 @@ def test_get_health_timestamp(client):
 
 def test_post_print_no_mode(client):
     data = get_print_input()
-    del data["mode"]
     res = client.post(
         "/api/v1.0/print",
         content_type='multipart/form-data',
@@ -55,7 +54,6 @@ def get_print_input(use_template=True):
     template_dir = get_path("./resources/templates/report")
 
     data = {
-        "mode": "png",
         "html": read_file(input_dir, "report.html"),
     }
 
