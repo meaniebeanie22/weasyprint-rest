@@ -6,6 +6,7 @@ Flask-RESTful extension."""
 
 import re
 import logging
+import secrets
 
 from flask import abort, request
 from functools import wraps
@@ -21,7 +22,7 @@ def authenticate(func):
         try:
             authenticated = (
                 get_api_key() is None
-                or ('X_API_KEY' in request.headers and get_api_key() == request.headers['X_API_KEY'])
+                or ('X_API_KEY' in request.headers and secrets.compare_digest(get_api_key(), request.headers['X_API_KEY']))
             )
         except Exception:  # pragma: no cover
             return abort(401)
