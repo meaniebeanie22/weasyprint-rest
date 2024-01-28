@@ -15,12 +15,7 @@ class WeasyPrinter:
         html = HTML(file_obj=self.html, encoding="utf-8", url_fetcher=self.template.url_fetcher, base_url=os.getcwd())
         font_config = self.template.get_font_config()
         styles = self.template.get_styles() if self.template is not None else []
-
-        if mode == "pdf":
-            return html.write_pdf(stylesheets=styles, image_cache=None, font_config=font_config)
-
-        if mode == "png":
-            return html.write_png(stylesheets=styles, image_cache=None, font_config=font_config)
+        return html.write_pdf(stylesheets=styles, image_cache=None, font_config=font_config)
 
     def close(self):
         pass
