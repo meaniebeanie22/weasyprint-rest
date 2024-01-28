@@ -13,7 +13,7 @@ COPY . /app
 WORKDIR /app
 RUN /venv/bin/pytest
 
-FROM python:slim-buster AS runner
+FROM python:slim-bullseye AS runner
 RUN apt-get update && \
     apt-get install --no-install-suggests --no-install-recommends --yes gtk+3.0 curl jq
 
