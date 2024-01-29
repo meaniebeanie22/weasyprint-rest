@@ -29,10 +29,6 @@ def create_app():
     local_app.config['MAIL_ENABLED'] = False
     local_app.config['SECRET_KEY'] = get_secret_key()
 
-    @local_app.route("/")
-    def hello_world():
-        return "<p>Hello, World!</p>"
-
     local_api = Api(local_app)
 
     register_routes(local_api)
