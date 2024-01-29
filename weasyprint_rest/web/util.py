@@ -20,9 +20,10 @@ def authenticate(func):
     @wraps(func)
     def verify_token(*args, **kwargs):
         try:
+            valid_digest = secrets.compare_digest(get_api_key(), request.headers['X_API_KEY'])
             authenticated = (
                 get_api_key() is None
-                or ('X_API_KEY' in request.headers and secrets.compare_digest(get_api_key(), request.headers['X_API_KEY']))
+                or ('X_API_KEY' in request.headers and valid_digest)
             )
         except Exception:  # pragma: no cover
             return abort(401)
