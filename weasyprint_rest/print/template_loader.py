@@ -25,6 +25,7 @@ class TemplateLoader:
             self.template_definitions = {}
 
         def load(self, base_dir):
+            print(f'os.listdir() : {os.listdir()}')
             for template_dir in os.listdir(base_dir):
                 abs_template_dir = os.path.join(base_dir, template_dir)
                 template_file = os.path.join(abs_template_dir, "template.json")
