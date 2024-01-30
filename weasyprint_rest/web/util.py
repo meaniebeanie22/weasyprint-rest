@@ -28,7 +28,8 @@ def authenticate(func):
                 or ('X_API_KEY' in request.headers and get_api_key() == request.headers['X_API_KEY'])
             )
             print(f'Authenticated: {authenticated}', flush=True)
-        except Exception:  # pragma: no cover
+        except Exception as error:  # pragma: no cover
+            print(f'Error occured during auth: {error}', flush=True)
             return abort(401)
 
         if authenticated is True:
