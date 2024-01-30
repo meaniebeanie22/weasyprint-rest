@@ -24,7 +24,7 @@ def authenticate(func):
             valid_digest = secrets.compare_digest(get_api_key(), request.headers['X_API_KEY'])
             authenticated = (
                 get_api_key() is None
-                or ('X_API_KEY' in request.headers and valid_digest)
+                or ('X_API_KEY' in request.headers and get_api_key() == request.headers['X_API_KEY'])
             )
             print('Authenticated: {authenticated}', flush=True)
         except Exception:  # pragma: no cover
