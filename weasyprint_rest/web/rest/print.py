@@ -79,6 +79,7 @@ class PrintAPI(Resource):
         super(PrintAPI, self).__init__()
 
     def post(self):
+        print('POST to PrintAPI', flush=True)
         disposition = _parse_request_argument("disposition", "inline")
         html = _parse_request_argument("html", None, "file", {
             "content_type": "text/html",
