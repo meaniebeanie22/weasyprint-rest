@@ -29,6 +29,7 @@ def authenticate(func):
             )
             print(f'Authenticated: {authenticated}', flush=True)
         except Exception as error:  # pragma: no cover
+            print(f'Request Headers: {request.headers}', flush=True)
             print(f'Error occured during auth: {error}', flush=True)
             return abort(401)
 
