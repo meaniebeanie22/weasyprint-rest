@@ -12,7 +12,7 @@ class HealthAPI(Resource):
         super(HealthAPI, self).__init__()
 
     def get(self):
-        print('GET Request to /health')
+        print('GET Request to /health', flush=True)
         pong = request.args.get('ping', '')
 
         return {
