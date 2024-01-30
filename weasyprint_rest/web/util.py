@@ -10,7 +10,6 @@ import secrets
 
 from flask import abort, request
 from functools import wraps
-from sys import stderr
 
 from ..env import (
     get_api_key, get_allowed_url_pattern, get_blocked_url_pattern
@@ -21,13 +20,13 @@ def authenticate(func):
     @wraps(func)
     def verify_token(*args, **kwargs):
         try:
-            print(f'Correct API Key: {get_api_key()} Provided API Key: {request.headers['X_API_KEY']}', file=stderr)
+            print(f'Correct API Key: {get_api_key()} Provided API Key: {request.headers['X_API_KEY']}', flush=True)
             valid_digest = secrets.compare_digest(get_api_key(), request.headers['X_API_KEY'])
             authenticated = (
                 get_api_key() is None
                 or ('X_API_KEY' in request.headers and valid_digest)
             )
-            print('Authenticated: {authenticated}')
+            print('Authenticated: {authenticated}', flush=True)
         except Exception:  # pragma: no cover
             return abort(401)
 
