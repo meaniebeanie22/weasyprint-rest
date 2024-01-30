@@ -73,7 +73,7 @@ def _build_template():
 
 
 class PrintAPI(Resource):
-    method_decorators = [authenticate]
+    decorators = [authenticate]
 
     def __init__(self):
         super(PrintAPI, self).__init__()
