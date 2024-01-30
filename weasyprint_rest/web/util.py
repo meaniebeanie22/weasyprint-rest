@@ -20,12 +20,12 @@ def authenticate(func):
     @wraps(func)
     def verify_token(*args, **kwargs):
         try:
-            print(f'Correct API Key: {get_api_key()} Provided API Key: {request.headers['X-API-KEY']}', flush=True)
+            print(f'Authentication Request:\nProvided API Key: {request.headers['X-API-KEY']}', flush=True)
             valid = secrets.compare_digest(get_api_key(), request.headers.get('X-API-KEY'))
             print(f'Compare Digest: {valid}', flush=True)
             authenticated = (
                 get_api_key() is None
-                or ('X-API-KEY' in request.headers and get_api_key() == request.headers['X-API-KEY'])
+                or ('X-API-KEY' in request.headers and valid)
             )
             print(f'Authenticated: {authenticated}', flush=True)
         except Exception as error:  # pragma: no cover
