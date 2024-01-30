@@ -23,7 +23,7 @@ ENV PRODUCTION "true"
 ENV FLASK_ENV=production
 
 WORKDIR /app
-CMD /venv/bin/waitress-serve --port=$PORT --call weasyprint_rest:app
+CMD /venv/bin/waitress-serve --listen=*:$PORT --call weasyprint_rest:app
 
 HEALTHCHECK --start-period=5s --interval=10s --timeout=10s --retries=5 \
     CMD curl --silent --fail --request GET http://localhost:5000/api/v1.0/health \
