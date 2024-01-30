@@ -27,7 +27,7 @@ def authenticate(func):
                 get_api_key() is None
                 or ('X_API_KEY' in request.headers and get_api_key() == request.headers['X_API_KEY'])
             )
-            print('Authenticated: {authenticated}', flush=True)
+            print(f'Authenticated: {authenticated}', flush=True)
         except Exception:  # pragma: no cover
             return abort(401)
 
