@@ -19,7 +19,10 @@ from ..env import (
 def authenticate(func):
     @wraps(func)
     def verify_token(*args, **kwargs):
-        print(f'Authentication Request:\nProvided API Key: {request.headers['X-API-KEY']}', flush=True)
+        try:
+            print(f'Authentication Request:\nProvided API Key: {request.headers['X-API-KEY']}', flush=True)
+        except Exception as error:
+            print(f'Error occured during auth: {error}', flush=True)
         try:
             valid = secrets.compare_digest(get_api_key(), request.headers.get('X-API-KEY'))
             print(f'Compare Digest: {valid}', flush=True)
