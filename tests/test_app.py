@@ -112,4 +112,4 @@ def get_path(relative_path):
 
 
 def auth_header():
-    return {"X_API_KEY": "SECRET_API_KEY"}
+    return {"X-API-KEY": "SECRET_API_KEY"}
